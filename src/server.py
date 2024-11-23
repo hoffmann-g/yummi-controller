@@ -2,18 +2,14 @@ import os
 import socket
 import threading
 import time
+import pydirectinput
 
-from pynput.keyboard import Controller as KeyboardController
-from pynput.mouse import Controller as MouseController
 from dotenv import load_dotenv
 from screeninfo import get_monitors
 from termcolor import colored
 
 
 load_dotenv()
-
-mouse = MouseController()
-keyboard = KeyboardController()
 
 host = os.getenv('SERVER_HOST', '0.0.0.0')
 port = int(os.getenv('SERVER_PORT', 5555))
@@ -33,15 +29,13 @@ def move_mouse_to_coords(x, y):
     screen_x = int(x * screen_width)
     screen_y = int(y * screen_height)
 
-    mouse.position = (screen_x, screen_y)
+    pydirectinput.moveTo(screen_x, screen_y)
 
 def press_key(key: str):
     try:
-        keyboard.press(key)
+        pydirectinput.press(key)
 
         time.sleep(key_press_duration)
-
-        keyboard.release(key)
 
     except ValueError as ex:
         print(colored(f'Invalid key: {key}. Error: {ex}', 'red'))
