@@ -40,13 +40,13 @@ def send_mouse_coords(seconds: float):
         scaled_x = x / screen_width
         scaled_y = y / screen_height
 
-        message = f'mouse_coords: {scaled_x:.4f}, {scaled_y:.4f}'
+        message = f'mouse_coords: {scaled_x:.4f}, {scaled_y:.4f};'
         client_socket.send(message.encode())
 
         time.sleep(0.01)  # 10ms
 
 def send_key_press(key: str):
-    message = f'key: {key}'
+    message = f'key: {key};'
     client_socket.send(message.encode())
 
 def handle_command(key_pressed):
