@@ -1,1 +1,1 @@
-# yummy-controller
+# yummi-controller
