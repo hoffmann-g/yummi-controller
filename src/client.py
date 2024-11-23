@@ -11,8 +11,8 @@ from screeninfo import get_monitors
 
 load_dotenv()
 
-server_ip = os.getenv('SERVER_IP')
-port = int(os.getenv('SERVER_PORT'))
+server_ip = os.getenv('SERVER_IP', "localhost")
+port = int(os.getenv('SERVER_PORT', 5555))
 
 client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 client_socket.connect((server_ip, port))
@@ -23,13 +23,13 @@ mouse_controller = mouse.Controller()
 screen_width = get_monitors()[0].width
 screen_height = get_monitors()[0].height
 
-q_key = os.getenv('Q_ABILITY')
-w_key = os.getenv('W_ABILITY')
-e_key = os.getenv('E_ABILITY')
-r_key = os.getenv('R_ABILITY')
+q_key = os.getenv('Q_ABILITY', "1")
+w_key = os.getenv('W_ABILITY', "2")
+e_key = os.getenv('E_ABILITY', "3")
+r_key = os.getenv('R_ABILITY', "4")
 
-q_mouse_listen_duration = float(os.getenv('Q_MOUSE_DURATION'))
-r_mouse_listen_duration = float(os.getenv('R_MOUSE_DURATION'))
+q_mouse_listen_duration = float(os.getenv('Q_MOUSE_DURATION', 1.35))
+r_mouse_listen_duration = float(os.getenv('R_MOUSE_DURATION', 3.5))
 
 def send_mouse_coords(seconds: float):
     start_time = time.time()

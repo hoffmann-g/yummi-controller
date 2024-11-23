@@ -15,8 +15,8 @@ load_dotenv()
 mouse = MouseController()
 keyboard = KeyboardController()
 
-host = os.getenv("SERVER_HOST")
-port = int(os.getenv("SERVER_PORT"))
+host = os.getenv("SERVER_HOST", "0.0.0.0")
+port = int(os.getenv("SERVER_PORT", 5555))
 
 server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server_socket.bind((host, port))
@@ -27,7 +27,7 @@ print(colored(f"# YUMMI CONTROLLER server started on port {port}", "green"))
 screen_width = get_monitors()[0].width
 screen_height = get_monitors()[0].height
 
-key_press_duration = float(os.getenv("KEY_PRESS_DURATION"))
+key_press_duration = float(os.getenv("KEY_PRESS_DURATION", 0.03))
 
 def move_mouse_to_coords(x, y):
     screen_x = int(x * screen_width)
