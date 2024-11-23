@@ -57,7 +57,7 @@ def handle_input(command : str):
             return
 
         if command.startswith('key'):
-            key = command.split(':')[1].strip()
+            key = command.split(':')[1].strip().lower()
 
             threading.Thread(target=press_key, args=(key,), daemon=True).start()
             print(colored(f'- pressed key [{key}]', 'light_green'))
