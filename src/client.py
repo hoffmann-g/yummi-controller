@@ -8,10 +8,9 @@ from termcolor import colored
 from dotenv import load_dotenv
 from screeninfo import get_monitors
 
-
 load_dotenv()
 
-server_ip = os.getenv('SERVER_IP', "localhost")
+server_ip = os.getenv('SERVER_IP', 'localhost')
 port = int(os.getenv('SERVER_PORT', 5555))
 
 client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -23,13 +22,14 @@ mouse_controller = mouse.Controller()
 screen_width = get_monitors()[0].width
 screen_height = get_monitors()[0].height
 
-q_key = os.getenv('Q_ABILITY', "1")
-w_key = os.getenv('W_ABILITY', "2")
-e_key = os.getenv('E_ABILITY', "3")
-r_key = os.getenv('R_ABILITY', "4")
+q_key = os.getenv('Q_ABILITY', '1')
+w_key = os.getenv('W_ABILITY', '2')
+e_key = os.getenv('E_ABILITY', '3')
+r_key = os.getenv('R_ABILITY', '4')
 
 q_mouse_listen_duration = float(os.getenv('Q_MOUSE_DURATION', 1.35))
 r_mouse_listen_duration = float(os.getenv('R_MOUSE_DURATION', 3.5))
+
 
 def send_mouse_coords(seconds: float):
     start_time = time.time()
@@ -45,9 +45,11 @@ def send_mouse_coords(seconds: float):
 
         time.sleep(0.01)  # 10ms
 
+
 def send_key_press(key: str):
     message = f'key: {key};'
     client_socket.send(message.encode())
+
 
 def handle_command(key_pressed):
     try:
@@ -75,6 +77,6 @@ def handle_command(key_pressed):
     except AttributeError:
         pass
 
-with keyboard.Listener(on_press = handle_command) as listener:
-    listener.join()
 
+with keyboard.Listener(on_press=handle_command) as listener:
+    listener.join()
