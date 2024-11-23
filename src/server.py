@@ -33,9 +33,11 @@ def move_mouse_to_coords(x, y):
 
 def press_key(key: str):
     try:
-        pydirectinput.press(key)
+        pydirectinput.keyDown(key)
 
         time.sleep(key_press_duration)
+
+        pydirectinput.keyUp(key)
 
     except ValueError as ex:
         print(colored(f'Invalid key: {key}. Error: {ex}', 'red'))
